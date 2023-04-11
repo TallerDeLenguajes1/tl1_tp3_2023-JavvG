@@ -4,17 +4,27 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define Names 5
-
 int main() {
 
     char *buff;     // Variable auxiliar
     char *fullname;
-    char *namelist[Names];
+    int number_of_names;
 
-    printf("\n > Deber%c ingresar %d nombres", 160, Names);
+    printf("\n > Ingrese la cantidad de nombres que desea enlistar: ");
+    scanf("%d", &number_of_names);
 
-    for(int i=0; i<Names; i++) {
+    while(number_of_names <= 0) {
+
+        printf("\n (!) Ingrese un n%cmero v%clido: ", 163, 160);
+        scanf("%d", &number_of_names);
+
+    }
+
+    fflush(stdin);
+
+    char *names_list[number_of_names];
+
+    for(int i=0; i<number_of_names; i++) {
 
         buff = (char *) malloc(100*sizeof(char));        // Reserva de memoria dinámica para la variable auxiliar
 
@@ -25,9 +35,9 @@ int main() {
 
         strcpy(fullname, buff);
 
-        namelist[i] = (char*) malloc((strlen(fullname) + 1) * sizeof(char));
+        names_list[i] = (char*) malloc((strlen(fullname) + 1) * sizeof(char));
 
-        strcpy(namelist[i], fullname);
+        strcpy(names_list[i], fullname);
 
         free(buff);     // Importante (!)
         free(fullname);
@@ -36,13 +46,13 @@ int main() {
 
     printf("\n\n >> Estos son los nombres ingresados: \n\n");
 
-    for(int i=0; i<Names; i++) {
+    for(int i=0; i<number_of_names; i++) {
 
         printf("\t > ");
 
-        puts(namelist[i]);
+        puts(names_list[i]);
         
-        free(namelist[i]);
+        free(names_list[i]);
 
     }
 
