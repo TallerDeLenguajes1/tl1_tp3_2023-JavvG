@@ -21,7 +21,7 @@ int main() {
         printf("\n\n > Ingrese el nombre completo de la persona %d: ", i+1);
         gets(buff);
 
-        fullname = (char*) malloc(strlen(buff) * sizeof(char));
+        fullname = (char*) malloc((strlen(buff) + 1) * sizeof(char));
 
         strcpy(fullname, buff);
 
