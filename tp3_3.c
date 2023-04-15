@@ -9,8 +9,10 @@
 int main() {
 
     char *buff;     // Variable auxiliar
-    char *fullname;
-    char *namelist[Names];
+    char **namelist;
+
+
+    namelist = (char **) malloc(sizeof(char *) * Names);
 
     printf("\n > Deber%c ingresar %d nombres", 160, Names);
 
@@ -21,16 +23,11 @@ int main() {
         printf("\n\n > Ingrese el nombre completo de la persona %d: ", i+1);
         gets(buff);
 
-        fullname = (char*) malloc((strlen(buff) + 1) * sizeof(char));
+        namelist[i] = (char*) malloc((strlen(buff) + 1) * sizeof(char));
 
-        strcpy(fullname, buff);
-
-        namelist[i] = (char*) malloc((strlen(fullname) + 1) * sizeof(char));
-
-        strcpy(namelist[i], fullname);
+        strcpy(namelist[i], buff);
 
         free(buff);     // Importante (!)
-        free(fullname);
 
     }
 
