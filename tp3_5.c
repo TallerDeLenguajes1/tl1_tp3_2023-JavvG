@@ -7,8 +7,8 @@
 int main() {
 
     char *buff;     // Variable auxiliar
-    char *fullname;
     int number_of_names;
+    char **names_list;
 
     printf("\n > Ingrese la cantidad de nombres que desea enlistar: ");
     scanf("%d", &number_of_names);
@@ -22,7 +22,7 @@ int main() {
 
     fflush(stdin);
 
-    char *names_list[number_of_names];
+    names_list = (char **) malloc(sizeof(char *) * number_of_names);
 
     for(int i=0; i<number_of_names; i++) {
 
@@ -31,16 +31,11 @@ int main() {
         printf("\n\n > Ingrese el nombre completo de la persona %d: ", i+1);
         gets(buff);
 
-        fullname = (char*) malloc((strlen(buff) + 1) * sizeof(char));
+        names_list[i] = (char*) malloc((strlen(buff) + 1) * sizeof(char));
 
-        strcpy(fullname, buff);
-
-        names_list[i] = (char*) malloc((strlen(fullname) + 1) * sizeof(char));
-
-        strcpy(names_list[i], fullname);
+        strcpy(names_list[i], buff);
 
         free(buff);     // Importante (!)
-        free(fullname);
 
     }
 
